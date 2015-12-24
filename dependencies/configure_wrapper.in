@@ -1,0 +1,6 @@
+#!/bin/bash
+export PKG_CONFIG_PATH=@PKG_CONFIG_PATH@
+export PATH=@PATH@
+export LDFLAGS="-L@DEP_ROOT@/lib"
+export CPPFLAGS="-I@DEP_ROOT@/include"
+"$@"
