@@ -30,8 +30,7 @@ def main(args):
         with open(pkgconfig_file, 'r') as pkg_file:
             with open(pkgconfig_tmp_file, 'w') as tmp_file:
                 for line in pkg_file.readlines():
-                    if line.startswith('Libs:'):
-                        print line
+                    if line.startswith('Libs'):
                         new_libs = []
                         libs = line.split(' ')
                         for lib in libs:
