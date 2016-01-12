@@ -30,7 +30,7 @@ ExternalProject_add(
     URL ${url_ffmpeg}
     PREFIX ffmpeg
     UPDATE_COMMAND ""
-    CONFIGURE_COMMAND ${conf_wrapper} ./configure --prefix=${CMAKE_INSTALL_PREFIX} --extra-cflags="-I${DEPROOT}/include" --extra-ldflags="-L${DEPROOT}/lib" --pkg-config-flags=--static --enable-gpl --enable-nonfree --enable-libfdk-aac --enable-libfreetype --enable-libmp3lame --enable-libopus --enable-libvorbis --enable-libvpx --enable-libx264 --enable-libx265
+    CONFIGURE_COMMAND ${conf_wrapper} ./configure --prefix=${CMAKE_INSTALL_PREFIX} --extra-cflags="-I${DEPROOT}/include" --extra-ldflags="-L${DEPROOT}/lib" --pkg-config-flags=--static --enable-shared --disable-static --enable-pic --enable-gpl --enable-nonfree --enable-libfdk-aac --enable-libfreetype --enable-libmp3lame --enable-libopus --enable-libvorbis --enable-libvpx --enable-libx264 --enable-libx265
     INSTALL_COMMAND ${install_cmd}
     BUILD_IN_SOURCE 1
     BUILD_COMMAND ${conf_wrapper} make
@@ -40,11 +40,6 @@ rez_install_files(
     cmake/ffmpeg.cmake
     DESTINATION .
 )
-
-# Install dependency libs
-file(RELATIVE_PATH rel_build ${CMAKE_CURRENT_SOURCE_DIR} ${PROJECT_BINARY_DIR}/DEPENDENCIES_PREFIX)
-file(GLOB_RECURSE lib_files "${rel_build}/lib/*.a")
-rez_install_files(${lib_files} RELATIVE ${rel_build} DESTINATION . )
 
 if(${REZ_BUILD_INSTALL})
   install (SCRIPT "${CMAKE_SOURCE_DIR}/dependencies/PostInstall.cmake")

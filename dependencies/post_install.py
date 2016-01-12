@@ -9,9 +9,15 @@ def main(args):
         return
     source_path = args[1]
     install_path = args[2]
+    lib_source_path = os.path.join(source_path, "DEPENDENCIES_PREFIX", "lib")
     lib_path = os.path.join(install_path, "lib")
-    print "SOURCE:", source_path
-    print "INSTALL:", install_path
+    print "Copy all dependency libs."
+    for a in os.listdir(lib_source_path):
+        if not a.endswith(".a"):
+            continue
+        lib_file = os.path.join(lib_source_path, a)
+        shutil.copy(lib_file, os.path.join(lib_path, a))
+        print "Copying:", a
     pkgconfig_root = os.path.join(install_path, "lib", "pkgconfig")
     for pc in os.listdir(pkgconfig_root):
         pkgconfig_file = os.path.join(pkgconfig_root, pc)

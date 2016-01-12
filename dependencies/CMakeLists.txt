@@ -35,7 +35,7 @@ ExternalProject_add(
     GIT_REPOSITORY ${url_x264}
     PREFIX x264
     UPDATE_COMMAND ""
-    CONFIGURE_COMMAND ${conf_wrapper} ./configure --prefix=${DEP_ROOT} --enable-static
+    CONFIGURE_COMMAND ${conf_wrapper} ./configure --prefix=${DEP_ROOT} --enable-pic --enable-static
     INSTALL_COMMAND make install
     BUILD_IN_SOURCE 1
     BUILD_COMMAND ${conf_wrapper} make
@@ -50,7 +50,7 @@ ExternalProject_add(
     HG_REPOSITORY ${url_x265}
     PREFIX x265
     UPDATE_COMMAND echo add_subdirectory(source) > CMakeLists.txt
-    CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${DEP_ROOT} -DCMAKE_PROJECT_NAME=x265 -DENABLE_SHARED:bool=off
+    CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${DEP_ROOT} -DCMAKE_PROJECT_NAME=x265 -DENABLE_SHARED:bool=off -DENABLE_PIC=ON
     BUILD_COMMAND make -j1 VERBOSE=on
     BUILD_IN_SOURCE 0
     INSTALL_COMMAND make install
@@ -132,10 +132,11 @@ ExternalProject_add(
 #
 ExternalProject_add(
     vpx
+    DEPENDS yasm
     GIT_REPOSITORY ${url_vpx}
     PREFIX vpx
     UPDATE_COMMAND ""
-    CONFIGURE_COMMAND ${conf_wrapper} ./configure --prefix=${DEP_ROOT} --disable-examples
+    CONFIGURE_COMMAND ${conf_wrapper} ./configure --prefix=${DEP_ROOT} --disable-examples --enable-pic
     INSTALL_COMMAND make install
     BUILD_IN_SOURCE 1
     BUILD_COMMAND ${conf_wrapper} make
