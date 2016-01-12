@@ -9,6 +9,8 @@ def main(args):
         return
     source_path = args[1]
     install_path = args[2]
+    print "Source:", source_path
+    print "Install:", install_path
     lib_source_path = os.path.join(source_path, "DEPENDENCIES_PREFIX", "lib")
     lib_path = os.path.join(install_path, "lib")
     print "Copy all dependency libs."
@@ -29,6 +31,7 @@ def main(args):
             with open(pkgconfig_tmp_file, 'w') as tmp_file:
                 for line in pkg_file.readlines():
                     if line.startswith('Libs:'):
+                        print line
                         new_libs = []
                         libs = line.split(' ')
                         for lib in libs:
