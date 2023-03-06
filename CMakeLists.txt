@@ -33,6 +33,9 @@ set(conf_wrapper ${PROJECT_BINARY_DIR}/configure_wrapper)
 
 add_subdirectory(dependencies)
 
+# NOTE(tohi): The freetype development libraries can be installed on Rocky Linux with:
+#   sudo dnf install freetype-devel
+
 ExternalProject_add(
     ffmpeg
     DEPENDS nasm yasm x264 x265 fdk-aac lame opus ogg vorbis vpx
