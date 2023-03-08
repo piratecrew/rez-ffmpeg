@@ -19,6 +19,8 @@ if [[ $REZ_BUILD_INSTALL -eq 1 ]];
 then
     cmake --build $REZ_BUILD_PATH -j11
     cmake --install $REZ_BUILD_PATH -j11
+    
+    scp -r $REZ_BUILD_SOURCE_PATH/cmake $REZ_BUILD_INSTALL_PATH/    
 else
     echo we wont even build if you are not running install as we have several external projects that would install during buildstep;
 fi
