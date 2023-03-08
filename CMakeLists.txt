@@ -38,9 +38,17 @@ set(url_ffmpeg https://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.tar.bz2)
 
 # Create a wrapper script for configure commands.
 # - Need to update PATH since we are building executables into non-standard locations, 
-#   i.e. the build folder.
+#   i.e. the build folder. The same is true for the PKG_CONFIG_PATH.
 # - Need to enable fPIC since we are linking static libs. Not all dependencies allow
-#   this to be configured.
+#   this to be configured. Thus, we must setup these flags as part of the environment
+#   we build in.
+#
+# NOTE(tohi): There is an over-use of our custom environment in the configure/build
+#             steps below. The reason for this is that the environment is only required
+#             in some cases, but it is hard to know exactly which ones these are. 
+#             Additionally, not all parts of the environment are needed in all cases. 
+#             As such, a simple way to cover all bases is to always use everything and
+#             hope that this doesn't break anything. 
 set(deps_prefix ${CMAKE_CURRENT_BINARY_DIR}/ffmpeg_build)
 set(deps_bindir ${CMAKE_CURRENT_BINARY_DIR}/bin)
 
@@ -51,6 +59,8 @@ configure_file(
     ${CMAKE_CURRENT_BINARY_DIR}/tmp/set_env 
     @ONLY
 )
+# Copy the configured shell script to the build folder while explicitly setting file
+# permissions.
 file(
     COPY ${CMAKE_CURRENT_BINARY_DIR}/tmp/set_env
     DESTINATION ${CMAKE_CURRENT_BINARY_DIR}
