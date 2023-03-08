@@ -70,7 +70,11 @@ set(set_env ${CMAKE_CURRENT_BINARY_DIR}/set_env)
 
 #
 # Build dependencies.
+# These steps are taken mostly from:
 #
+# https://trac.ffmpeg.org/wiki/CompilationGuide/Centos
+#
+# with a few modifications in some places. 
 
 #
 # NASM
