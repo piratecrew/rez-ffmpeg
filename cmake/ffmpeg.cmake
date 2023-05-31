@@ -1,5 +1,4 @@
 find_package(PkgConfig REQUIRED)
-set(ENV{PKG_CONFIG_PATH} $ENV{PKG_CONFIG_PATH}:$ENV{REZ_FFMPEG_ROOT}/lib/pkgconfig)
 if(ffmpeg_COMPONENTS)
 	set(FFMPEG_COMPONENTS ${ffmpeg_COMPONENTS})
 endif()
