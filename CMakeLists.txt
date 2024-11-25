@@ -287,6 +287,7 @@ ExternalProject_add(ffmpeg
         "--enable-nonfree"
         "--enable-shared"                           
         "--disable-static"                          
+        "--disable-vulkan"
         "--enable-pic"                              
     BUILD_IN_SOURCE 1
     BUILD_COMMAND ${set_env} make
