@@ -136,11 +136,11 @@ set(x265_cmake_args
     "-DNASM_ROOT:string=${deps_bindir}"
     "-DENABLE_SHARED:bool=OFF"
     "-DENABLE_PIC:bool=ON"
-    "../../src/x265/source"
 )
 ExternalProject_add(x265
     DEPENDS nasm yasm
     URL ${x265_url}
+    SOURCE_SUBDIR source
     CMAKE_ARGS ${x265_cmake_args}
     BUILD_IN_SOURCE 0
     BUILD_COMMAND ${set_env} make
@@ -287,6 +287,7 @@ ExternalProject_add(ffmpeg
         "--enable-nonfree"
         "--enable-shared"                           
         "--disable-static"                          
+        "--disable-vulkan"
         "--enable-pic"                              
     BUILD_IN_SOURCE 1
     BUILD_COMMAND ${set_env} make
