@@ -1,6 +1,6 @@
 name = "ffmpeg"
 
-version = "7.1"
+version = "7.1.1"
 
 description = \
     """

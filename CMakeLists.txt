@@ -33,7 +33,7 @@ set(ogg_url http://downloads.xiph.org/releases/ogg/libogg-${ogg_version}.tar.gz)
 set(vorbis_version 1.3.4 CACHE STRING "vorbis version")
 set(vorbis_url http://downloads.xiph.org/releases/vorbis/libvorbis-${vorbis_version}.tar.gz)
 
-set(FFMPEG_VERSION 7.1 CACHE STRING "ffmpeg version")
+set(FFMPEG_VERSION 7.1.1 CACHE STRING "ffmpeg version")
 set(url_ffmpeg https://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.tar.bz2)
 
 # Create a wrapper script for configure commands.
